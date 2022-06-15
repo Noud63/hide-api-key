@@ -4,14 +4,15 @@ import {
     GOT_NO_CAT,
 } from '../constants/catConstants'
 
-export const getCatReducer = (state = { cat: [] }, action) => {
+export const getCatReducer = (state = {cat : []}, action) => {
+   
     switch (action.type) {
         case GET_THAT_CAT:
             return { loading: true }
         case GOT_THAT_CAT:
-            return { ...state, loading: false, cat: action.payload }
+            return { loading: false, cat: action.payload }
         case GOT_NO_CAT:
-            return { ...state, loading: false, error: action.payload }
+            return { loading: false, error: action.payload }
         default:
             return state
     }

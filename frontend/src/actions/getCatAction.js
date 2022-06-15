@@ -6,19 +6,19 @@ import {
 import axios from 'axios'
 
 
-const getCats = () => async (dispatch) => {
+const getCats = () => async (dispatch, getState) => {
 
     try {
         dispatch({ type: GET_THAT_CAT })
 
         let res = await axios.get('/api/test')
         let data = res.data
-        console.log(data)
 
         dispatch({
             type: GOT_THAT_CAT,
             payload: data
         })
+
     } catch (error) {
         dispatch({
             type: GOT_NO_CAT,
