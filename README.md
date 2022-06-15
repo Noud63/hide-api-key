@@ -1,4 +1,4 @@
-<h1>Hide API Key backend (React/Redux/Toolkit)
+<h1>Hide API Key backend (React/Redux/Toolkit)</h1>
 
 Unfortunately, keeping any key in your React client, even if you are using gitignore and an .env file, is not secure. React environment variables are embedded in the build and are publicly accessible.<br>
 
