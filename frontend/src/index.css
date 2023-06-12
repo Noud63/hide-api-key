@@ -15,15 +15,18 @@ body {
     width: 100%;
     outline: none;
     border-style: none;
-    background-color: rgb(209, 209, 209);
-    color: rgb(63, 63, 63); 
+    background-color: rgb(145, 145, 145);
+    color: white; 
     z-index: -1;
     transition: all .5s ease-in-out;
+    
 }
 
 .menu.show {
      top: 80px;
-     box-shadow: 0px 0px 4px rgb(68, 68, 68);
-     width: 100vw;
+     left:0;
+     height: 80px;
+     box-shadow: 0px 0px 8px rgb(27, 27, 27);
+     width: 100%;
 }
 

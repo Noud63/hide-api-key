@@ -1,45 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './UserScreen.module.css'
 import { useSelector } from 'react-redux'
 
 const UserScreen = () => {
 
-    
     const users = useSelector(state => state.users.users)
-    console.log(users)
-    // const { users } = users
     
-    // const getUsersFromStorage = useCallback(() => {
-    //     if (localStorage.getItem('USERS')) {
-    //         const data = JSON.parse(localStorage.getItem('USERS'))
-    //         setUser(data)
-    //     }else{
-    //         alert('No users!')
-    //         navigate('/')
-    //     }
-    
-    // }, [navigate])
-
-    // useEffect(() => {
-    //     getUsersFromStorage()
-    // }, [getUsersFromStorage])
-
-    const deleteUser = (id) => {
+    const deleteUser = (id, e) => {
        
-        console.log(id)
-        // if(id){
-        //     user = users.filter(u => {
-        //         return u.id !== id
-        //     })
-        //     setUser(user)
-        // }
-        //localStorage.setItem('USERS', JSON.stringify(user))
+       const element = e.target.parentNode
+       element.parentNode.removeChild(element)
+       
+        if(id){
+            let newUsers = users.filter(u => {
+                return u.id !== id
+            })
+            localStorage.setItem('users', JSON.stringify(newUsers))
+        }
     }
-    // React.useEffect(() => {
-    //     console.log(users);
-    // }, [users]);
-
 
     return (
         <div className={styles.wrapper}>
@@ -48,7 +27,7 @@ const UserScreen = () => {
                 <div className={styles.user2}>Address</div>
                 <div className={styles.user2}>Country</div>
                 <div className={styles.user2}>Email</div>
-                <div className={styles.user2 + ' ' + styles.trash}>Del</div>
+                <div className={styles.user2 + ' ' + styles.trash2}></div>
             </div>
             {users.map((user, index) => {
                 return (
@@ -57,7 +36,7 @@ const UserScreen = () => {
                         <div className={styles.user}>{user.address}</div>
                         <div className={styles.user}>{user.country}</div>
                         <div className={styles.user}>{user.email}</div>
-                        <div className={styles.user + ' ' + styles.trash} onClick={() => deleteUser(user.id)}>X</div>
+                        <div className={styles.user + ' ' + styles.trash} onClick={(e) => deleteUser(user.id, e)}>Delete</div>
                     </div>
                 )
             })}

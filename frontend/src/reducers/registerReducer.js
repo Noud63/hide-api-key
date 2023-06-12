@@ -4,7 +4,11 @@ import {
     REGISTER_SUCCESS
 } from '../constants/registerConstants'
 
-export const registerReducer = (state = { users: [] }, action) => {
+const initialState = {
+    users: JSON.parse(localStorage.getItem('users')) || []
+}
+
+export const registerReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER_REQUEST:
             return { loading: true };
@@ -12,7 +16,7 @@ export const registerReducer = (state = { users: [] }, action) => {
             let user = action.payload
             return { ...state, users: [...state.users, user], loading: false };
         case REGISTER_FAIL:
-            return { loading: false, error: action.payload };
+            return { loading: false, error: action.payload.message };
         default:
             return state;
     }

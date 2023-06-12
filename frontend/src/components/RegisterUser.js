@@ -1,68 +1,80 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styles from './RegisterUser.module.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { register } from '../actions/registerAction'
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid'
 
 const RegisterUser = () => {
 
-    const [ name, setName ] = useState("")
-    const [ email, setEmail ] = useState("")
-    const [ address, setAddress ] = useState("")
-    const [ country, setCountry ] = useState("")
-    const [ password, setPassword ] = useState("")
-    const [ repeatPassword, setRepeatPassword ] = useState("")
+    const [userData, setUserData] = useState({
+        name:'',
+        email:'',
+        address:'',
+        city:'',
+        country:'',
+        password:'',
+        password2:''
+    })
 
-    const [ showMessage, setShowMessage ] = useState(false)
+    const { name, email, address, city, country, password, password2 } = userData
+
+    const [showMessage, setShowMessage] = useState(false)
 
     const dispatch = useDispatch()
-    //const users = useSelector( state => state.users)
-    //const { loading, userInfo, error} = users
 
-    const onsubmitHandler = (e) => {
-     e.preventDefault()
-     if(password !== repeatPassword){
-         setShowMessage(true)
-     }else{
-         let user = {
-             id: uuid(),
-             name: name,
-             email: email,
-             address: address,
-             country: country,
-             password: password
-          }
-
-         dispatch(register(user))
-
-         setName('')
-         setEmail('')
-         setAddress('')
-         setCountry('')
-         setPassword('')
-         setRepeatPassword('')
-
-         setShowMessage(false)
-        }
-
-       
+    const onChange = (e) => {
+        setUserData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }))
     }
 
-    
+    const onsubmitHandler = (e) => {
+        e.preventDefault()
+        e.target.reset()
+
+        if (password !== password2) {
+            setShowMessage(true)
+        }else{
+            const user = {
+                id: uuid(),
+                name,
+                email,
+                address,
+                city,
+                country,
+                password
+            }
+            dispatch(register(user))
+            setShowMessage(false)
+            setUserData({name: '',
+                email: '',
+                address: '',
+                city: '',
+                country: '',
+                password: '',
+                password2: ''
+            })
+            let usersExisting = JSON.parse(localStorage.getItem('users')) || []
+            localStorage.setItem('users', JSON.stringify([...usersExisting, user]))
+           } 
+        }
+
     return (
         <>
-        <div className={styles.inputFields}>
-                <form  onSubmit={onsubmitHandler}>
-                    <input type='text' value={name} placeholder='Name' onChange={(e) => setName(e.target.value)} required/>
-                    <input type='text' value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} required/>
-                    <input type='text' value={address} placeholder='Address' onChange={(e) => setAddress(e.target.value)} required/>
-                    <input type='text' value={country} placeholder='Country' onChange={(e) => setCountry(e.target.value)} required/>
-                    <input type='password' value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} required/>
-                    <input type='password' value={repeatPassword} placeholder='Repeat Password' onChange={(e) => setRepeatPassword(e.target.value)} required/>
+            <div className={styles.inputFields}>
+                <form onSubmit={onsubmitHandler}>
+                    <input type='text' name='name' defaultValue={name} placeholder='Name' onChange={onChange} required />
+                    <input type='text' name='email' defaultValue={email} placeholder='Email' onChange={onChange} required />
+                    <input type='text' name='address' defaultValue={address} placeholder='Address' onChange={onChange} required />
+                    <input type='text' name='country' defaultValue={country} placeholder='Country' onChange={onChange} required />
+                    <input type='password' name='password' defaultValue={password} placeholder='Password' onChange={onChange} required />
+                    <input type='password' name='password2' defaultValue={password2} placeholder='Repeat Password' onChange={onChange} required />
                     <button className={styles.btn2} type='submit'>Submit</button>
-            </form>
-            {showMessage ? <div className={styles.passwordMatch}>Password don't match!</div> : ""}
-        </div>
+                </form>
+                {showMessage ? <div className={styles.passwordMatch}>Passwords don't match!</div> : ""}
+
+            </div>
         </>
     )
 }

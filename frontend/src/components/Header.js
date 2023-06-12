@@ -20,15 +20,15 @@ const hide = () => {
             <div className={styles.menuBtn} onMouseEnter={show}>Menu</div>
             <div className={view ? 'menu show' : 'menu'} onMouseLeave={hide} >
                 <div className={styles.submenu} >
-                    <Link to='/'>
+                    <Link to='/' className={styles.link}>
                         <button className={styles.btn}>Get Cat</button>
                     </Link>
 
-                    <Link to='/registeruser'>
+                    <Link to='/registeruser'className={styles.link}>
                         <button className={styles.btn}>Register User</button>
                     </Link>
 
-                    <Link to='/users'>
+                    <Link to='/users'className={styles.link}>
                         <button className={styles.btn}>Get users</button>
                     </Link>
                  </div>

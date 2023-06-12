@@ -10,5 +10,5 @@ export const getDataFromUrl = asyncHandler(async (req, res) => {
             "x-api-key": process.env.REACT_APP_API_KEY
         }
     });
-    res.status(200).send(data);
+    res.status(200).json(data);
 })

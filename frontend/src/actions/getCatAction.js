@@ -6,7 +6,7 @@ import {
 import axios from 'axios'
 
 
-const getCats = () => async (dispatch, getState) => {
+const getCats = () => async (dispatch) => {
 
     try {
         dispatch({ type: GET_THAT_CAT })
