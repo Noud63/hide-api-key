@@ -13,7 +13,7 @@ const reducer = combineReducers({
 
 const initialState = {
     cats: { cat: [] },
-    users: { users: []}
+    users: JSON.parse(localStorage.getItem('users')) || []
 }
 
 const store = configureStore(

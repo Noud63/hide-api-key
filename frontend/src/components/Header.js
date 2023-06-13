@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Header.module.css'
 import '../index.css'
 import { Link } from 'react-router-dom'
+import { HiMenu } from "react-icons/hi";
 
 const Header = () => {
 
@@ -17,7 +18,7 @@ const hide = () => {
 
     return (
         <div className={styles.header}>
-            <div className={styles.menuBtn} onMouseEnter={show}>Menu</div>
+            <div className={styles.menuBtn} onMouseEnter={show}><HiMenu color='white' size='40px' /></div>
             <div className={view ? 'menu show' : 'menu'} onMouseLeave={hide} >
                 <div className={styles.submenu} >
                     <Link to='/' className={styles.link}>

@@ -51,12 +51,6 @@ overflow-x: hidden;
     border-right: 1px solid gray;
     border-left: 1px solid gray;
     border-bottom: 1px solid rgb(68, 68, 68);
-    transition: .5s ease-in-out; 
-}
-
-.btn:hover {
-    color: red;
-    letter-spacing: 2px;
 }
 
 .submenu {

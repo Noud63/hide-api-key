@@ -10,13 +10,12 @@ const RegisterUser = () => {
         name:'',
         email:'',
         address:'',
-        city:'',
         country:'',
         password:'',
         password2:''
     })
 
-    const { name, email, address, city, country, password, password2 } = userData
+    const { name, email, address, country, password, password2 } = userData
 
     const [showMessage, setShowMessage] = useState(false)
 
@@ -41,28 +40,37 @@ const RegisterUser = () => {
                 name,
                 email,
                 address,
-                city,
                 country,
                 password
             }
+            let usersExisting = JSON.parse(localStorage.getItem('users')) || []
+            // console.log(usersExisting)
+            // usersExisting.forEach(u => {
+            //     if (u.name === user.name) {
+            //         alert("User already Exists!")
+            //         return
+            //     } 
+            // })
             dispatch(register(user))
             setShowMessage(false)
-            setUserData({name: '',
+            setUserData({
+                name: '',
                 email: '',
                 address: '',
-                city: '',
                 country: '',
                 password: '',
                 password2: ''
             })
-            let usersExisting = JSON.parse(localStorage.getItem('users')) || []
+
             localStorage.setItem('users', JSON.stringify([...usersExisting, user]))
+            
            } 
         }
 
     return (
         <>
             <div className={styles.inputFields}>
+                <div className={styles.registerHeader}>Register</div>
                 <form onSubmit={onsubmitHandler}>
                     <input type='text' name='name' defaultValue={name} placeholder='Name' onChange={onChange} required />
                     <input type='text' name='email' defaultValue={email} placeholder='Email' onChange={onChange} required />

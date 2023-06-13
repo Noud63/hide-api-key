@@ -35,7 +35,7 @@ const HomeScreen = () => {
                 {cat && cat.map((kittypic, index) => {
                     const { url } = kittypic
                     return (
-                        <div key={index} style={{ width: '90%', height: '90%', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
+                        <div key={index} style={{ width: '90%', height: '90%', marginBottom: '20px', display: 'flex', justifyContent: 'center', overflow: "hidden" }}>
                             <img src={url} alt="kitty" style={{ width: 'auto', height: '100%', objectFit: 'contain' }} />
                         </div>
                     )
