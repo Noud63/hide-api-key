@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { getCatReducer } from './reducers/getCatReducer'
 import { registerReducer } from './reducers/registerReducer'
+
 //import { loadState, saveState } from './localStorage'
 
 const reducer = combineReducers({
@@ -13,7 +14,7 @@ const reducer = combineReducers({
 
 const initialState = {
     cats: { cat: [] },
-    users: JSON.parse(localStorage.getItem('users')) || []
+    users: JSON.parse(localStorage.getItem('users')) || [],
 }
 
 const store = configureStore(

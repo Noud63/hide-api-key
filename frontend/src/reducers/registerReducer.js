@@ -14,7 +14,7 @@ export const registerReducer = (state = initialState, action) => {
             return { loading: true };
         case REGISTER_SUCCESS:
             let user = action.payload
-            return { ...state, users: [...state.users, user], loading: false };
+            return Array.isArray(user) ? { ...state, users: user, loading: false }:{ ...state, users: [...state.users, user], loading: false } ;
         case REGISTER_FAIL:
             return { loading: false, error: action.payload.message };
         default:

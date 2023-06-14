@@ -3,25 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import styles from './UserScreen.module.css'
 import { useSelector } from 'react-redux'
 import useMediaQuery from '../hooks/useMediaQuery'
+import DeleteUser from '../components/DeleteUser'
+
 
 const UserScreen = () => {
 
-    const users = useSelector(state => state.users.users)
-
     const layoutBreak = useMediaQuery('(max-width: 1020px)')
-
-    const deleteUser = (id, e) => {
-
-        const element = e.target.parentNode
-        element.parentNode.removeChild(element)
-
-        const usersList = JSON.parse(localStorage.getItem('users'))
-        
-        const filteredList = usersList.filter( u => {
-                 return u.id !== id
-        })
-            localStorage.setItem('users', JSON.stringify(filteredList))
-        }
+    const users = useSelector(state => state.users.users)
 
     return (
         <div className={styles.wrapper}>
@@ -52,7 +40,7 @@ const UserScreen = () => {
                         <div className={styles.user}>{user.address}</div>
                         <div className={styles.user}>{user.country}</div>
                         <div className={styles.user}>{user.email}</div>
-                        <div className={styles.user + ' ' + styles.trash} onClick={(e) => deleteUser(user.id, e)}>Delete</div>
+                        <DeleteUser userId={user.id} />
                     </div>
                         </div>
                 )
