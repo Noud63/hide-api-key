@@ -10,7 +10,6 @@ const DeleteUser = ({userId}) => {
     const deleteUser = (e, id) => {
 
         const element = e.target
-        console.log(element)
         element.parentNode.removeChild(element)
 
         const usersList = JSON.parse(localStorage.getItem('users'))
@@ -18,6 +17,7 @@ const DeleteUser = ({userId}) => {
         const filteredList = usersList.filter(u => {
             return u.id !== id
         })
+        
         dispatch(register(filteredList))
         localStorage.setItem('users', JSON.stringify(filteredList))
     }

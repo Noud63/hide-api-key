@@ -13,7 +13,7 @@ export const registerReducer = (state = initialState, action) => {
         case REGISTER_REQUEST:
             return { loading: true };
         case REGISTER_SUCCESS:
-            let user = action.payload
+            let user = action.payload // is or a single user object or the filtered array
             return Array.isArray(user) ? { ...state, users: user, loading: false }:{ ...state, users: [...state.users, user], loading: false } ;
         case REGISTER_FAIL:
             return { loading: false, error: action.payload.message };
