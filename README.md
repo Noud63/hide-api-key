@@ -6,4 +6,4 @@ You should really only save API keys or secrets in your backend such as Node / E
 
 I used the free <a href='https://docs.thecatapi.com' target='blank'> Cat Api </a> to demonstrate how to do this.<br>
 
-![hideapi](https://user-images.githubusercontent.com/38325801/173843095-1a154601-ba10-4546-9b06-7d17be70c438.png)
+![hideapikey](https://github.com/Noud63/hide-api-key/assets/38325801/b2e6b929-9f50-4e94-8f9d-76ae3fd23a44)
